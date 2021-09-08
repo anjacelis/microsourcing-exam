@@ -1,0 +1,75 @@
+<div class="container">
+  <form [formGroup]="jobForm" (ngSubmit)="onAddJob()">
+    <h2 class="d-flex justify-content-center text-primary">Add job</h2>
+    <div class="mb-3">
+      <label class="brand">Company</label>
+      <input type="text" class="form-control" formControlName="company" />
+    </div>
+    <div
+      *ngIf="
+        jobForm.controls['company'].invalid &&
+        (jobForm.controls['company'].dirty ||
+          jobForm.controls['company'].touched)
+      "
+      class="text-danger"
+    >
+      <span *ngIf="jobForm.controls['company'].errors"
+        >Company is required</span
+      >
+    </div>
+    <div class="mb-3">
+      <label class="brand">Title</label>
+      <input type="text" class="form-control" formControlName="title" />
+    </div>
+    <div
+      *ngIf="
+        jobForm.controls['title'].invalid &&
+        (jobForm.controls['title'].dirty || jobForm.controls['title'].touched)
+      "
+      class="text-danger"
+    >
+      <span *ngIf="jobForm.controls['title'].errors">Title is required</span>
+    </div>
+    <div class="mb-3">
+      <label class="brand">Date</label>
+      <input type="date" class="form-control" formControlName="date" />
+    </div>
+    <div
+      *ngIf="
+        jobForm.controls['date'].invalid &&
+        (jobForm.controls['date'].dirty || jobForm.controls['date'].touched)
+      "
+      class="text-danger"
+    >
+      <span *ngIf="jobForm.controls['date'].errors">Date is required</span>
+    </div>
+    <div class="mb-3">
+      <label class="brand">Type of work</label>
+      <div>
+        <input
+          type="radio"
+          id="fulltime"
+          name="type"
+          [value]="JobType.FullTime"
+          formControlName="type"
+        />
+        <label for="fulltime">FullTime</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="partime"
+          name="type"
+          [value]="JobType.PartTime"
+          formControlName="type"
+        />
+        <label for="partime">PartTime</label>
+      </div>
+    </div>
+    <div class="my-3">
+      <button type="submit" class="btn btn-primary" [disabled]="!jobForm.valid">
+        Add Job
+      </button>
+    </div>
+  </form>
+</div>
