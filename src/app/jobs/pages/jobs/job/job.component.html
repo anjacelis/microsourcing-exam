@@ -1,0 +1,23 @@
+<div
+  class="job"
+  *ngIf="job"
+  (mouseenter)="mouseEnter()"
+  (mouseleave)="mouseLeave()"
+>
+  <img [src]="job.logo" class="job-logo" />
+  <fa-icon
+    *ngIf="isHover"
+    (click)="onDelete(job.id)"
+    [ngStyle]="{ color: 'red', float: 'right' }"
+    [icon]="faTimes"
+  ></fa-icon>
+  <div class="job-meta">
+    <!-- TODO: create a pipe for date -->
+    <span class="job-posted">{{ job.date }}</span>
+    <span>{{ job.type === JobType.FullTime ? "Full Time" : "Part Time" }}</span>
+  </div>
+  <div class="job-title">
+    <a [routerLink]="['/jobs', job.id]">{{ job.title }}</a>
+  </div>
+  <a href="#">{{ job.company }}</a>
+</div>
